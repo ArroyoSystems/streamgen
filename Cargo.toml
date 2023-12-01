@@ -1,0 +1,39 @@
+[package]
+name = "streamgen"
+version = "0.1.0"
+edition = "2021"
+
+authors = ["Arroyo Systems <support@arroyo.systems>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/ArroyoSystems/streamgen"
+homepage = "https://arroyo.dev"
+description = """
+A tool for generating streams of data for testing and benchmarking.
+"""
+
+categories = ["development-tools", "command-line-utilities"]
+
+keywords = ["streaming", "data", "generator", "fake", "kafka"]
+
+[features]
+kafka = ["rdkafka"]
+
+[dependencies]
+axum = "0.7.1"
+chrono = {version = "0.4", features = ["serde"]}
+clap = { version = "4.4.10", features = ["derive"] }
+fake = { version = "2.9.1", features = ["http", "derive"] }
+http = "1.0.0"
+rand = "0.8.5"
+tokio = { version = "1.34.0", features = ["full"] }
+tracing = "0.1.40"
+headers = "0.4.0"
+axum-extra = { version = "0.9.0", features = ["typed-header"] }
+tokio-stream = { version = "0.1.14", features = ["full"] }
+async-trait = "0.1.74"
+tracing-subscriber = { version = "0.3.18", features = ["default", "env-filter"] }
+serde = {version = "1", features = ["derive"]}
+serde_json = "1.0.108"
+
+rdkafka = { version = "0.36.0", features = ["cmake-build"], optional = true }
+uuid = { version = "1.6.1", features = ["v4"] }
