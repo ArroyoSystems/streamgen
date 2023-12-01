@@ -11,7 +11,7 @@ engines like [Arroyo](https://github.com/ArroyoSystems/arroyo) or [Apache Flink]
 [crates-url]: https://crates.io/crates/streamgen
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [mit-url]: https://github.com/ArroyoSystems/streamgen/blob/master/LICENSE-MIT
-[actions-badge]: https://github.com/ArroyoSystems/streamgen/workflows/ci.yml/badge.svg
+[actions-badge]: https://github.com/ArroyoSystems/streamgen/actions/workflows/ci.yml/badge.svg
 [actions-url]: https://github.com/ArroyoSystems/streamgen/actions?query=branch%3Amain
 
 
