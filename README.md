@@ -3,6 +3,18 @@
 Streamgen is a CLI tool for generating streams of data for testing stream processing applications with
 engines like [Arroyo](https://github.com/ArroyoSystems/arroyo) or [Apache Flink](https://flink.apache.org/).
 
+[![Crates.io][crates-badge]][crates-url]
+[![MIT licensed][mit-badge]][mit-url]
+[![Build Status][actions-badge]][actions-url]
+
+[crates-badge]: https://img.shields.io/crates/v/streamgen.svg
+[crates-url]: https://crates.io/crates/streamgen
+[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[mit-url]: https://github.com/ArroyoSystems/streamgen/blob/master/LICENSE-MIT
+[actions-badge]: https://github.com/ArroyoSystems/streamgen/workflows/ci.yml/badge.svg
+[actions-url]: https://github.com/ArroyoSystems/streamgen/actions?query=branch%3Amain
+
+
 ## Features
 
 ### Sinks
