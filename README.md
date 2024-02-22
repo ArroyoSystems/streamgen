@@ -76,8 +76,8 @@ $ streamgen --rate 10 --format string common-log stdout
 ```
 
 Writing to Kafka
-```
-$ streamgen --format json order kafka --topic orders --boostrap-servers localhost:9092
+```sh
+$ streamgen --format json order kafka --topic orders --bootstrap-servers localhost:9092
 ```
 
 ## Installation
