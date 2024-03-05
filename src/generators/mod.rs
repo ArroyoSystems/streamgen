@@ -3,6 +3,7 @@ use serde::Serialize;
 
 pub mod common_log;
 pub mod schematized;
+pub mod nexmark;
 
 pub trait Generator {
     fn generate(&mut self) -> Vec<u8>;

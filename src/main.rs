@@ -11,6 +11,8 @@ use clap::{Parser, Subcommand, ValueEnum};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 
+const DEFAULT_RATE: f32 = 50.0;
+
 #[derive(Debug, Clone, Copy, ValueEnum)]
 pub enum Format {
     String,
@@ -23,10 +25,11 @@ pub enum GeneratorSpec {
     Impulse,
     Order,
     StockTrade,
+    Nexmark,
 }
 
 impl GeneratorSpec {
-    pub fn generator(&self, format: Format) -> Box<dyn Generator> {
+    pub fn generator(&self, format: Format, event_rate: f32) -> Box<dyn Generator> {
         match self {
             GeneratorSpec::CommonLog => {
                 Box::new(generators::common_log::CommonLogGenerator::new(format))
@@ -38,6 +41,7 @@ impl GeneratorSpec {
             GeneratorSpec::StockTrade => Box::new(generators::schematized::SchemaGenerator::<
                 StockTrade,
             >::new(format)),
+            GeneratorSpec::Nexmark => Box::new(generators::nexmark::NexmarkGen::new(format, event_rate as f64))
         }
     }
 }
@@ -88,6 +92,7 @@ impl OutputCommand {
 
 #[tokio::main]
 pub async fn main() {
+
     tracing_subscriber::registry()
         .with(
             tracing_subscriber::EnvFilter::try_from_default_env().unwrap_or_else(|_| "info".into()),
@@ -97,7 +102,8 @@ pub async fn main() {
 
     let cli = Cli::parse();
 
-    let mut generator = cli.spec.generator(cli.format.unwrap_or(Format::Json));
+    let mut generator = cli.spec.generator(cli.format.unwrap_or(Format::Json), 
+                                           cli.rate.unwrap_or(DEFAULT_RATE));
 
     let mut writer = cli
         .output
@@ -111,7 +117,7 @@ pub async fn main() {
         count += 1;
 
         tokio::time::sleep(std::time::Duration::from_secs_f32(
-            1.0 / cli.rate.unwrap_or(50.0),
+            1.0 / cli.rate.unwrap_or(DEFAULT_RATE),
         ))
         .await;
     }
